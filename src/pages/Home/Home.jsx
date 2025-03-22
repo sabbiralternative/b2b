@@ -1,5 +1,8 @@
+import { useBalance } from "../../hooks/balance";
+
 const Home = () => {
-  const balanceData = undefined;
+  const { data } = useBalance();
+
   const defineBalanceColor = (amount) => {
     if (amount) {
       const parseAmount = parseFloat(amount);
@@ -25,12 +28,16 @@ const Home = () => {
                     <h2
                       className="mb-1"
                       style={{
-                        color: `${defineBalanceColor(balanceData?.upperLevel)}`,
+                        color: `${defineBalanceColor(
+                          data?.downLevelCreditReferance
+                        )}`,
                       }}
                     >
-                      {balanceData?.upperLevel}
+                      {data?.downLevelCreditReferance}
                     </h2>
-                    <span className="text-muted">Upper Level</span>
+                    <span className="text-muted">
+                      Upper Level Credit Reference
+                    </span>
                   </div>
                 </div>
               </a>
@@ -39,10 +46,8 @@ const Home = () => {
             <div className="col-sm-6 col-12 mb-4">
               <div className="card">
                 <div className="card-body text-center">
-                  <h2 className="mb-1">
-                    {balanceData?.downLevelOccupyBalance}
-                  </h2>
-                  <span className="text-muted">Total Client Balance</span>
+                  <h2 className="mb-1">{data?.downLevelOccupyBalance}</h2>
+                  <span className="text-muted">Down level occupy balance</span>
                 </div>
               </div>
             </div>
@@ -51,25 +56,11 @@ const Home = () => {
 
         <div className="col-lg-6 col-md-12">
           <div className="row">
-            {/* <div className="col-sm-6 col-12 mb-4">
-                <div className="card">
-                  <div className="card-body text-center">
-                    <h2 className="mb-1">
-                      {balanceData?.downLevelCreditReferance}
-                    </h2>
-                    <span className="text-muted">Down level Cred. Reference</span>
-                  </div>
-                </div>
-              </div> */}
             <div className="col-sm-6 col-12 mb-4">
               <div className="card">
                 <div className="card-body text-center">
-                  <h2 className="mb-1">
-                    {balanceData?.availableBalance ||
-                      (balanceData?.availableBalance == 0 &&
-                        balanceData?.availableBalance?.toFixed(2))}
-                  </h2>
-                  <span className="text-muted">Available Balance</span>
+                  <h2 className="mb-1">{data?.downLevelCreditReferance}</h2>
+                  <span className="text-muted">Down level Cred. Reference</span>
                 </div>
               </div>
             </div>
@@ -77,7 +68,7 @@ const Home = () => {
             <div className="col-sm-6 col-12 mb-4">
               <div className="card">
                 <div className="card-body text-center">
-                  <h2 className="mb-1">{balanceData?.totalMasterBalance}</h2>
+                  <h2 className="mb-1">{data?.totalMasterBalance}</h2>
                   <span className="text-muted">Total Master Balance</span>
                 </div>
               </div>
@@ -90,16 +81,16 @@ const Home = () => {
             <div className="col-sm-6 col-12 mb-4">
               <div className="card">
                 <div className="card-body text-center">
-                  <h2 className="mb-1">{balanceData?.usersToday}</h2>
-                  <span className="text-muted">New Users Today</span>
+                  <h2 className="mb-1">{data?.upperLevel}</h2>
+                  <span className="text-muted">Upper Level</span>
                 </div>
               </div>
             </div>
             <div className="col-sm-6 col-12 mb-4">
               <div className="card">
                 <div className="card-body text-center">
-                  <h2 className="mb-1">{balanceData?.depositToday}</h2>
-                  <span className="text-muted">Total Deposit Today</span>
+                  <h2 className="mb-1">{data?.downLevelProfitLoss}</h2>
+                  <span className="text-muted">Downlevel Profit/Loss</span>
                 </div>
               </div>
             </div>
@@ -111,8 +102,8 @@ const Home = () => {
             <div className="col-sm-6 col-12 mb-4">
               <div className="card">
                 <div className="card-body text-center">
-                  <h2 className="mb-1">{balanceData?.withdrawToday}</h2>
-                  <span className="text-muted">Total Withdraw Today</span>
+                  <h2 className="mb-1">{data?.availableBalance}</h2>
+                  <span className="text-muted">Available Balance</span>
                 </div>
               </div>
             </div>
@@ -121,13 +112,15 @@ const Home = () => {
                 <div className="card-body text-center">
                   <h2
                     style={{
-                      color: `${defineBalanceColor(balanceData?.pnlToday)}`,
+                      color: `${defineBalanceColor(
+                        data?.availableBalanceWithProfitLoss
+                      )}`,
                     }}
                     className="mb-1"
                   >
-                    {balanceData?.pnlToday}
+                    {data?.availableBalanceWithProfitLoss}
                   </h2>
-                  <span className="text-muted">P/L Today</span>
+                  <span className="text-muted">Available Balance with P/L</span>
                 </div>
               </div>
             </div>
