@@ -13,7 +13,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import eventReducer from "./features/events/eventSlice";
+
 const persistConfig = {
   key: "auth",
   storage,
@@ -24,7 +24,6 @@ export const store = configureStore({
   reducer: {
     global: stateReducer,
     auth: persistedAuthReducer,
-    event: eventReducer,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
