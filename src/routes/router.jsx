@@ -6,6 +6,13 @@ import AccountList from "../pages/Account/AcountList/AccountList";
 import CreateAccount from "../pages/Account/CreateAccount/CreateAccount";
 import MarketAnalysis from "../pages/MarketAnalysis/MarketAnalysis";
 import MultiLoginAccount from "../pages/MultiLoginAccount/MultiLoginAccount";
+import AccountStatement from "../pages/Reports/AccountStatement";
+import CurrentBets from "../pages/Reports/CurrentBets";
+import GeneralLock from "../pages/Reports/GeneralLock";
+import PartyWinLoss from "../pages/Reports/PartyWinLoss";
+import TurnOver from "../pages/Reports/TurnOver";
+import UserAuthentication from "../pages/Reports/UserAuthentication";
+import UserHistory from "../pages/Reports/UserHistory";
 
 export const router = createBrowserRouter(
   [
@@ -32,6 +39,34 @@ export const router = createBrowserRouter(
         {
           path: "/create-account",
           element: <CreateAccount />,
+        },
+        {
+          path: "/account-statement",
+          element: <AccountStatement />,
+        },
+        {
+          path: "/current-bets",
+          element: <CurrentBets />,
+        },
+        {
+          path: "/general-lock",
+          element: <GeneralLock />,
+        },
+        {
+          path: "/party-win-loss",
+          element: <PartyWinLoss />,
+        },
+        {
+          path: "/turn-over",
+          element: <TurnOver />,
+        },
+        {
+          path: "/user-authentication",
+          element: <UserAuthentication />,
+        },
+        {
+          path: "/user-history",
+          element: <UserHistory />,
         },
       ],
     },
