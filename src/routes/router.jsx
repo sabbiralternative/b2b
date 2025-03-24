@@ -12,7 +12,9 @@ import GeneralLock from "../pages/Reports/GeneralLock";
 import PartyWinLoss from "../pages/Reports/PartyWinLoss";
 import TurnOver from "../pages/Reports/TurnOver";
 import UserAuthentication from "../pages/Reports/UserAuthentication";
-import UserHistory from "../pages/Reports/UserHistory";
+import LoginHistory from "../pages/Reports/LoginHistory";
+import ChangePasswordHistory from "../pages/Reports/ChangePasswordHistory";
+import AccountHistory from "../pages/Account/AcountHistory/AccountHistory";
 
 export const router = createBrowserRouter(
   [
@@ -35,6 +37,10 @@ export const router = createBrowserRouter(
         {
           path: "/account-list",
           element: <AccountList />,
+        },
+        {
+          path: "/account-history",
+          element: <AccountHistory />,
         },
         {
           path: "/create-account",
@@ -65,8 +71,12 @@ export const router = createBrowserRouter(
           element: <UserAuthentication />,
         },
         {
-          path: "/user-history",
-          element: <UserHistory />,
+          path: "/login-history",
+          element: <LoginHistory />,
+        },
+        {
+          path: "/change-password-history",
+          element: <ChangePasswordHistory />,
         },
       ],
     },

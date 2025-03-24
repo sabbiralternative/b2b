@@ -1,12 +1,19 @@
-import { useRef } from "react";
 import { DownloadTableExcel } from "react-export-table-to-excel";
-import { handleExportToPDF } from "../../utils/exportToPdf";
-import { useUserAuthentication } from "../../hooks/userAuthentication";
+import { useDownLineEditForm } from "../../../hooks/downLineEditForm";
+import { useLocation } from "react-router-dom";
+import { useRef } from "react";
+import { handleExportToPDF } from "../../../utils/exportToPdf";
 
-const UserAuthentication = () => {
+const AccountHistory = () => {
   const { exportPdf } = handleExportToPDF();
   const tableRef = useRef(null);
-  const { data } = useUserAuthentication();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const userName = params.get("userName");
+  const { data } = useDownLineEditForm({
+    downlineId: userName,
+    type: "accountHistory",
+  });
 
   return (
     <div className="container-xxl flex-grow-1 container-p-y">
@@ -19,11 +26,11 @@ const UserAuthentication = () => {
             justifyContent: "space-between",
           }}
         >
-          <h5>Party Win Loss</h5>
+          <h5>Account History</h5>
           <div className="d-inline-block mr-2">
             <DownloadTableExcel
-              filename="Party Win Loss"
-              sheet="Party Win Loss"
+              filename="Account History"
+              sheet="Account History"
               currentTableRef={tableRef.current}
             >
               <button
@@ -38,7 +45,7 @@ const UserAuthentication = () => {
             <button
               title="Export To PDF"
               onClick={() =>
-                exportPdf("#user-authentication", "user-authentication.pdf")
+                exportPdf("#account-history", "account-history.pdf")
               }
               type="button"
               className="btn btn-danger btn-icon btn-sm"
@@ -56,16 +63,22 @@ const UserAuthentication = () => {
           >
             <thead>
               <tr>
-                <th>Username</th>
-                <th>Authentication</th>
+                <th>Super User</th>
+                <th>User</th>
+                <th>Transfer From</th>
+                <th>Amount </th>
+                <th>Date </th>
               </tr>
             </thead>
             <tbody className="table-border-bottom-0">
               {data?.result?.map((item, i) => {
                 return (
                   <tr key={i}>
-                    <td>{item?.username}</td>
-                    <td>{item?.authentication}</td>
+                    <td>{item?.superUser}</td>
+                    <td>{item?.user}</td>
+                    <td>{item?.transferFrom}</td>
+                    <td>{item?.amount}</td>
+                    <td>{item?.date}</td>
                   </tr>
                 );
               })}
@@ -84,4 +97,4 @@ const UserAuthentication = () => {
   );
 };
 
-export default UserAuthentication;
+export default AccountHistory;

@@ -2,11 +2,11 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosSecure } from "../lib/AxiosSecure";
 import { API } from "../api";
 
-export const useAccountStatement = () => {
+export const usePartyWinLoss = () => {
   return useMutation({
-    mutationKey: ["account-statement"],
+    mutationKey: ["party-win-loss"],
     mutationFn: async (payload) => {
-      const { data } = await AxiosSecure.post(API.accountStatement, payload);
+      const { data } = await AxiosSecure.post(API.partyWinLoss, payload);
       return data;
     },
   });

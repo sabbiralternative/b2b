@@ -2,13 +2,13 @@ import { useForm } from "react-hook-form";
 import { useEffect, useRef, useState } from "react";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import { handleExportToPDF } from "../../utils/exportToPdf";
-import { useAccountStatement } from "../../hooks/accountStatement.hook";
 import { DateRangePicker } from "rsuite";
 import moment from "moment";
 import { defaultDate } from "../../utils/defaultDate";
 import { useSearchUser } from "../../hooks/searchUser";
+import { useUserHistory } from "../../hooks/userHistory";
 
-const AccountStatement = () => {
+const ChangePasswordHistory = () => {
   const [date, setDate] = useState({
     fromDate: defaultDate(7),
     toDate: new Date(),
@@ -18,8 +18,7 @@ const AccountStatement = () => {
   const tableRef = useRef(null);
   const { register, handleSubmit, watch, reset } = useForm();
   const searchId = watch("searchId");
-  const type = watch("type");
-  const { mutate: getAccountStatement, data } = useAccountStatement();
+  const { mutate, data } = useUserHistory();
 
   useEffect(() => {
     if (searchId?.length > 0) {
@@ -37,13 +36,12 @@ const AccountStatement = () => {
   const onSubmit = (data) => {
     const payload = {
       ...data,
+      type: "password",
       fromdate: moment(date?.fromDate).format("DD-MM-YYYY"),
       todate: moment(date?.toDate).format("DD-MM-YYYY"),
     };
-    getAccountStatement(payload);
+    mutate(payload);
   };
-
-  console.log(data);
 
   return (
     <div className="container-xxl flex-grow-1 container-p-y">
@@ -103,48 +101,6 @@ const AccountStatement = () => {
                     block
                   />
                 </div>
-                <div>
-                  <label htmlFor="searchByName"> Type</label>
-                  <select {...register("type")} className="form-control" id="">
-                    <option value="1">All</option>
-                    <option value="2">Deposit/Withdraw Report</option>
-                    <option value="3">Game Report</option>
-                  </select>
-                </div>
-                {type === "2" && (
-                  <div className="col-lg-2">
-                    <div className="form-group">
-                      <label>Statement</label>
-                      <select
-                        className="form-control"
-                        {...register("statement")}
-                      >
-                        <option value="all">All</option>
-                        <option value="allcredit">Credit - All</option>
-                        <option value="creditupper">Credit - Upper</option>
-                        <option value="creditdown">Credit - Down</option>
-                        <option value="allbalance">Pts - All</option>
-                        <option value="balanceupper">Pts - Upper</option>
-                        <option value="balancedown">Pts - Down</option>
-                      </select>
-                    </div>
-                  </div>
-                )}
-                {type === "3" && (
-                  <div className="col-lg-2">
-                    <div className="form-group">
-                      <label>Statement</label>{" "}
-                      <select
-                        {...register("statement")}
-                        className="form-control"
-                      >
-                        <option value="all">All</option>{" "}
-                        <option value="sport">Sports</option>{" "}
-                        <option value="casino">Casino</option>
-                      </select>
-                    </div>
-                  </div>
-                )}
               </div>
 
               <div className="col-12">
@@ -177,7 +133,7 @@ const AccountStatement = () => {
             justifyContent: "space-between",
           }}
         >
-          <h5>All Clients</h5>
+          <h5>Change Password History</h5>
           <div className="d-inline-block mr-2">
             <DownloadTableExcel
               filename="Account Statement"
@@ -214,13 +170,9 @@ const AccountStatement = () => {
           >
             <thead>
               <tr>
+                <th>Username</th>
                 <th>Date</th>
-                <th>Sr No</th>
-                <th>Credit</th>
-                <th>Debit</th>
-                <th>Pts</th>
-                <th>Remark</th>
-                <th>FromTo</th>
+                <th>IP</th>
               </tr>
             </thead>
             <tbody className="table-border-bottom-0">
@@ -228,16 +180,13 @@ const AccountStatement = () => {
                 return (
                   <tr key={i}>
                     <td>
-                      <strong>{item?.date}</strong>
+                      <strong>{item?.username}</strong>
                     </td>
 
                     <td>
-                      <strong>{item?.credit}</strong>
+                      <strong>{item?.date}</strong>
                     </td>
-                    <td>{item?.debit}</td>
-                    <td>{item?.pts}</td>
-                    <td>{item?.remark}</td>
-                    <td>{item?.fromto}</td>
+                    <td>{item?.ip}</td>
                   </tr>
                 );
               })}
@@ -256,4 +205,4 @@ const AccountStatement = () => {
   );
 };
 
-export default AccountStatement;
+export default ChangePasswordHistory;

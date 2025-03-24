@@ -2,11 +2,11 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosSecure } from "../lib/AxiosSecure";
 import { API } from "../api";
 
-export const useAccountStatement = () => {
+export const useSearchUser = () => {
   return useMutation({
-    mutationKey: ["account-statement"],
+    mutationKey: ["searchUser"],
     mutationFn: async (payload) => {
-      const { data } = await AxiosSecure.post(API.accountStatement, payload);
+      const { data } = await AxiosSecure.post(API.searchUser, payload);
       return data;
     },
   });
