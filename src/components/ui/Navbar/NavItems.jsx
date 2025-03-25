@@ -25,12 +25,12 @@ const Master = () => {
           <div data-i18n="Dashboards">Market Analysis</div>
         </Link>
       </li>
-      <li className="menu-item">
+      {/* <li className="menu-item">
         <Link to="/multi-login-account" className="menu-link">
           <i className="menu-icon bx bx-user-plus"></i>
           <div data-i18n="Dashboards">Multi Login Account</div>
         </Link>
-      </li>
+      </li> */}
 
       {menuData.map((menu) => (
         <li

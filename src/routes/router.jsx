@@ -7,7 +7,6 @@ import CreateAccount from "../pages/Account/CreateAccount/CreateAccount";
 import MarketAnalysis from "../pages/MarketAnalysis/MarketAnalysis";
 import MultiLoginAccount from "../pages/MultiLoginAccount/MultiLoginAccount";
 import AccountStatement from "../pages/Reports/AccountStatement";
-import CurrentBets from "../pages/Reports/CurrentBets";
 import GeneralLock from "../pages/Reports/GeneralLock";
 import PartyWinLoss from "../pages/Reports/PartyWinLoss";
 import TurnOver from "../pages/Reports/TurnOver";
@@ -15,6 +14,9 @@ import UserAuthentication from "../pages/Reports/UserAuthentication";
 import LoginHistory from "../pages/Reports/LoginHistory";
 import ChangePasswordHistory from "../pages/Reports/ChangePasswordHistory";
 import AccountHistory from "../pages/Account/AcountHistory/AccountHistory";
+import CurrentSportsBets from "../pages/Reports/CurrentSportsBets";
+import CurrentCasinoBets from "../pages/Reports/CurrentCasinoBets";
+import ChangePassword from "../pages/ChangePassword/ChangePassword";
 
 export const router = createBrowserRouter(
   [
@@ -51,8 +53,12 @@ export const router = createBrowserRouter(
           element: <AccountStatement />,
         },
         {
-          path: "/current-bets",
-          element: <CurrentBets />,
+          path: "/current-sports-bets",
+          element: <CurrentSportsBets />,
+        },
+        {
+          path: "/current-casino-bets",
+          element: <CurrentCasinoBets />,
         },
         {
           path: "/general-lock",
@@ -77,6 +83,10 @@ export const router = createBrowserRouter(
         {
           path: "/change-password-history",
           element: <ChangePasswordHistory />,
+        },
+        {
+          path: "/change-password",
+          element: <ChangePassword />,
         },
       ],
     },

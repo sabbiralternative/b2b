@@ -6,7 +6,7 @@ import { logout } from "../../../redux/features/auth/authSlice";
 const Dropdown = ({ showDropdown, setShowDropdown }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loginName, role } = useSelector((state) => state.global);
+  const { loginName, role } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -38,7 +38,7 @@ const Dropdown = ({ showDropdown, setShowDropdown }) => {
       </li>
       <li>
         <Link
-          to="/change-password-after-login"
+          to="/change-password"
           onClick={() => {
             setShowDropdown(false);
           }}

@@ -45,7 +45,7 @@ const SidebarItems = () => {
           <div data-i18n="Dashboards">Market Analysis</div>
         </Link>
       </li>
-      <li className="menu-item">
+      {/* <li className="menu-item">
         <Link
           onClick={closeSidebar}
           to="/multi-login-account"
@@ -54,7 +54,7 @@ const SidebarItems = () => {
           <i className="menu-icon bx bx-user-plus"></i>
           <div data-i18n="Dashboards">Multi Login Account</div>
         </Link>
-      </li>
+      </li> */}
       {menuData?.map((menu) => (
         <li
           onClick={() => handleToggleMenu(menu.id)}
